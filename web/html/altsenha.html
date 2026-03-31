@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema NAPNE - Alterar Senha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/altsenha.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../img/napne.png" alt="Logo do Sistema NAPNE com capelo de formatura e símbolo de acessibilidade">
+                    <h1>Sistema NAPNE</h1>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div>
+                        <div id="userName">Carregando...</div>
+                        <div id="userSiape" style="font-size: 0.8rem;">SIAPE: Carregando...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="welcome-section">
+                    <h2>Bem-vindo!</h2>
+                </div>
+                <ul class="main-menu">
+                    <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+                                </label>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="dashboard">
+                <div class="password-form">
+                    <h2>Alterar Senha</h2>
+                    <form id="change-password-form">
+                        <div class="form-group">
+                            <label for="current-password">Senha Atual</label>
+                            <input type="password" id="current-password" name="current-password" required>
+                            <button type="button" class="toggle-password" data-target="current-password" aria-label="Mostrar/ocultar senha"><i class="fas fa-eye"></i></button>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">Nova Senha</label>
+                            <input type="password" id="new-password" name="new-password" required>
+                            <button type="button" class="toggle-password" data-target="new-password" aria-label="Mostrar/ocultar senha"><i class="fas fa-eye"></i></button>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmar Nova Senha</label>
+                            <input type="password" id="confirm-password" name="confirm-password" required>
+                            <button type="button" class="toggle-password" data-target="confirm-password" aria-label="Mostrar/ocultar senha"><i class="fas fa-eye"></i></button>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="goToHome(); return false;"><i class="fas fa-times"></i> Cancelar</button>
+                            <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/iniciar.js"></script>
+    <script src="../js/altsenha.js"></script>
+</body>
+</html>

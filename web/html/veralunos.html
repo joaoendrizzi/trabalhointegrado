@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema NAPNE - Ver Alunos | Professor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/veralunos.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="../img/napne.png" alt="Logo do Sistema NAPNE">
+          <h1>Sistema NAPNE</h1>
+        </div>
+        <div class="user-info">
+          <div class="user-avatar" id="userAvatar"></div>
+          <div>
+            <div id="userName">Prof. Carregando...</div>
+            <div id="userSiape" style="font-size: 0.8rem; display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main-content">
+      <aside class="sidebar">
+        <div class="welcome-section">
+          <h2>Bem-vindo!</h2>
+        </div>
+        <ul class="main-menu">
+          <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+          <li><a href="#" class="active"><i class="fas fa-user-graduate"></i> Ver Alunos</a></li>
+          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+      </aside>
+
+      <main class="dashboard">
+        <div class="dashboard-header">
+          <h2>Alunos Cadastrados</h2>
+        </div>
+        <div class="stat-card">
+          <h3>Lista de Alunos</h3>
+          <ul id="alunosList"></ul>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <div id="modalAluno" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Detalhes do Aluno</h2>
+      <div id="detalhesAluno"></div>
+    </div>
+  </div>
+
+  <script src="../js/iniciar.js"></script>
+  <script src="../js/veralunos.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar Pareceres - NAPNE</title>
+  <link rel="stylesheet" href="../css/editarparecer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Sistema NAPNE - Editar Pareceres</h1>
+      <div class="user-info">
+        <i class="fas fa-user-circle"></i>
+        <span id="userInfo">Carregando...</span>
+      </div>
+    </div>
+  </header>
+
+    <div class="main-content">
+    <aside class="sidebar">
+      <div class="welcome-section">
+        <h2>Bem-vindo!</h2>
+      </div>
+      <ul class="main-menu">
+        <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="#" class="active"><i class="fas fa-edit"></i> Editar Pareceres</a></li>
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+      </ul>
+    </aside>
+
+  <main class="container">
+    <section class="pareceres-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>PEIs Adaptativos</h2>
+      </div>
+      <input type="text" id="searchPEI" placeholder="Pesquisar PEI Adaptativo..." class="search-bar">
+      <ul id="peisList" class="pareceres-list"></ul>
+      <div id="peiDetalhes" class="hidden">
+        <h3>PEI Adaptativo - Pareceres</h3>
+        <div id="pareceresListContainer"></div>
+        <div id="criarParecerSection">
+          <h4 style="margin-top: 20px;">Criar/Editar Parecer</h4>
+          <form id="editarParecerForm" style="display: none;">
+          <div class="form-group">
+            <label><strong>Nome do Aluno:</strong></label>
+            <p id="peiAlunoNome" class="readonly-field"></p>
+          </div>
+          <div class="form-group">
+            <label><strong>Componente:</strong></label>
+            <p id="peiComponente" class="readonly-field"></p>
+          </div>
+          <div class="form-group">
+            <label><strong>Docente:</strong></label>
+            <p id="peiDocente" class="readonly-field"></p>
+          </div>
+          <div class="form-group">
+            <label><strong>Curso:</strong></label>
+            <p id="peiCurso" class="readonly-field"></p>
+          </div>
+          <div class="form-group">
+            <label for="peiPeriodo"><strong>Período:</strong></label>
+            <select id="peiPeriodo" name="periodo" class="form-input" required>
+              <option value="">Selecione o período</option>
+              <option value="1° trimestre">1° trimestre</option>
+              <option value="2° trimestre">2° trimestre</option>
+              <option value="3° trimestre">3° trimestre</option>
+              <option value="1° semestre">1° semestre</option>
+              <option value="2° semestre">2° semestre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="peiDescricao"><strong>Descrição:</strong></label>
+            <textarea id="peiDescricao" name="descricao" class="form-textarea" rows="8" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="peiDataEnvio"><strong>Data de Envio:</strong></label>
+            <input type="datetime-local" id="peiDataEnvio" name="data_envio" class="form-input">
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Salvar Parecer</button>
+            <button type="button" id="cancelarEdicao" class="btn-secondary">Cancelar</button>
+          </div>
+        </form>
+        </div>
+        <div class="button-group" style="margin-top: 20px;">
+          <button id="fecharDetalhes" class="btn-secondary">Fechar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Sistema NAPNE - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="../js/iniciar.js"></script>
+  <script src="../js/gerarpdf.js"></script>
+  <script src="../js/editarparecer.js"></script>
+</body>
+</html>
+

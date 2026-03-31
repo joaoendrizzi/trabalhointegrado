@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema NAPNE - Portal do Professor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styleprof.css">
+</head>
+<body>
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<img src="../img/napne.png" alt="Logo do Sistema NAPNE com capelo de formatura e símbolo de acessibilidade">
+<h1>Sistema NAPNE</h1>
+</div>
+<div class="user-info">
+<div>
+    <div id="userName">Prof. Carregando...</div>
+    <div id="userSiape" style="font-size: 0.8rem;">SIAPE: Carregando...</div>
+</div>
+</div>
+</div>
+</div>
+    </header>
+
+<div class="container">
+    <div class="main-content">
+    <aside class="sidebar">
+        <div class="welcome-section">
+        <h2>Bem-vindo!</h2>
+        </div>
+<ul class="main-menu">
+    <li><a href="#" class="active"><i class="fas fa-home"></i> Início</a></li>
+    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+    <li id="config-item">
+        <a href="#" onclick="toggleConfigSubmenu()"><i class="fa-solid fa-gear"></i> Configurações</a>
+        <ul class="submenu" id="config-submenu">
+            <li><a href="altsenha.html" class="submenu-link">Alterar Senha</a></li>
+        </ul>
+    </li>
+</ul>
+</aside>
+
+<main class="dashboard">
+<div class="dashboard-header">
+<h2>Visão Geral</h2>
+</div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-header">
+                <h3>Alunos</h3>
+        <div class="stat-icon students-icon">
+        <i class="fas fa-user-graduate"></i>
+</div>
+    </div>
+        <div class="stat-value" id="totalAlunos">0</div>
+    </div>
+
+<div class="stat-card">
+        <div class="stat-header">
+            <h3>PEIs Adaptativos</h3>
+            <div class="stat-icon pei-icon">
+                <i class="fas fa-clipboard-list"></i>
+</div>
+        </div>
+            <div class="stat-value" id="totalPEIs">0</div>
+</div>
+
+<div class="stat-card">
+    <div class="stat-header">
+        <h3>Componentes</h3>
+    <div class="stat-icon courses-icon">
+<i class="fas fa-book"></i>
+</div>
+</div>
+    <div class="stat-value" id="totalComponentes">0</div>
+</div>
+
+
+</div>
+
+<h2 style="margin-bottom: 15px;">Módulos do Sistema</h2>
+
+    <div class="modules-grid">
+        <div class="module-card">
+            <div class="module-header students-header">
+            <h3>Alunos</h3>
+        </div>
+<div class="module-body">
+    <p>Acesse informações dos alunos, incluindo necessidades específicas, e status de matrícula.</p>
+<div class="module-actions">
+    <a href="../html/veralunos.html"><button class="btn-primary">
+    <i class="fas fa-eye"></i>Visualizar</button></a>
+
+</div>
+</div>
+</div>
+<div class="module-card">
+    <div class="module-header pei-header">
+    <h3>PEIs Geral</h3>
+</div>
+    <div class="module-body">
+    <p>Visualize Planos Educacionais Individualizados Gerais</p>
+    <div class="module-actions">
+        <a href="../html/peisgeral2.html"><button class="btn-primary">
+        <i class="fas fa-eye"></i>Visualizar</button></a>
+</div>
+</div>
+</div>
+
+<div class="module-card">
+    <div class="module-header courses-header">
+    <h3>Pareceres</h3>
+</div>
+    <div class="module-body">
+    <p>Visualize e edite pareceres</p>
+    <div class="module-actions">
+        <a href="../html/editarparecer.html"><button class="btn-primary">
+        <i class="fas fa-edit"></i>Editar Pareceres</button></a>
+    </div>
+    </div>
+</div>
+<div class="module-card">
+    <div class="module-header pei-header">
+    <h3>PEIs Adaptativos </h3>
+</div>
+    <div class="module-body">
+    <p>Visualize, Edite ou Crie os Planos Educacionais Individualizados Adaptativos</p>
+    <div class="module-actions">
+        <a href="../html/peisadap2.html"><button class="btn-primary">
+        <i class="fas fa-eye"></i>Visualizar</button></a>
+    
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+        </div>
+</div>
+</div>
+</footer>
+<script>
+    function toggleConfigSubmenu() {
+        const submenu = document.getElementById('config-submenu');
+        submenu.classList.toggle('open');
+    }
+
+</script>
+<script src="../js/iniciar.js"></script>
+<script src="../js/scriptprof.js"></script>
+</body>
+</html>

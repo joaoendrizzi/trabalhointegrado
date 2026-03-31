@@ -1,0 +1,140 @@
+﻿
+
+
+
+.sidebar,
+aside.sidebar {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  height: fit-content;
+  border: 1px solid #eee;
+  flex-shrink: 0;
+  width: 280px;
+  align-self: flex-start;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.welcome-section h2 {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.welcome-section p {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+.main-menu {
+  list-style: none;
+  margin-top: 0;
+}
+
+.main-menu li {
+  margin-bottom: 8px;
+}
+
+.main-menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: #2c3e50;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  gap: 12px;
+}
+
+.main-menu a:hover, 
+.main-menu a.active {
+  background: green;
+  color: white;
+}
+
+.main-menu i {
+  font-size: 1.1rem;
+  width: 25px;
+  flex-shrink: 0;
+}
+
+
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.submenu.open {
+  display: block;
+}
+
+.submenu li {
+  margin: 5px 0;
+}
+
+.submenu a {
+  color: #666;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: block;
+}
+
+.submenu a:hover {
+  color: #333;
+  background-color: #f0f0f0;
+}
+
+
+.main-menu li a#logoutBtn,
+.main-menu #logoutBtn,
+#logoutBtn {
+  background: none !important;
+  border: none !important;
+  color: #2c3e50 !important;
+  cursor: pointer !important;
+  font-size: inherit !important;
+  padding: 12px 15px !important;
+  transition: background-color 0.3s, color 0.3s !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px;
+  width: 100%;
+  text-decoration: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.main-menu li a#logoutBtn:hover,
+.main-menu li a#logoutBtn:focus,
+.main-menu #logoutBtn:hover,
+.main-menu #logoutBtn:focus,
+#logoutBtn:hover,
+#logoutBtn:focus {
+  background-color: green !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.main-menu li a#logoutBtn:hover i,
+.main-menu li a#logoutBtn:focus i,
+.main-menu #logoutBtn:hover i,
+.main-menu #logoutBtn:focus i,
+#logoutBtn:hover i,
+#logoutBtn:focus i {
+  color: #fff !important;
+}
+
+

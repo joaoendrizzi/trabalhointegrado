@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema NAPNE - Cadastrar Curso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/curso.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../img/napne.png" alt="Logo do Sistema NAPNE com capelo de formatura e símbolo de acessibilidade">
+                    <h1>Sistema NAPNE-Cadastrar Curso</h1>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">--</div>
+                    <div>
+                        <div id="userName">Carregando...</div>
+                        <div id="userSiape" style="font-size: 0.8rem; display: none;">SIAPE: </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="welcome-section">
+                    <h2>Bem-vindo!</h2>
+                </div>
+                <ul class="main-menu">
+                    <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li><a class="active"><i class="fas fa-edit"></i> Cadastrar Curso</a></li>
+                    <li><a href="../html/componente.html"><i class="fas fa-edit"></i> Cadastrar Componente</a></li>
+                    <li><a href="../html/necessidade.html"><i class="fas fa-edit"></i> Cadastrar Necessidade</a></li>
+                    <li id="config-item">
+                        <a href="#" onclick="toggleConfigSubmenu()"><i class="fa-solid fa-gear"></i> Configurações</a>
+                        <ul class="submenu" id="config-submenu">
+                            <li><a href="../html/altsenha.html">Alterar Senha</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="dashboard">
+                <div class="dashboard-header">
+                    <h2>Cadastrar Curso</h2>
+                </div>
+                <div class="form-container">
+                    <form id="curso-form">
+                        <div class="form-group">
+                            <label for="nome">Nome do Curso:</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo de Curso:</label>
+                            <select id="tipo" name="tipo" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="Superior">Superior</option>
+                                <option value="Médio">Médio</option>
+                            </select>
+                        </div>
+                        <button type="submit">Cadastrar Curso</button>
+                    </form>
+                    <div id="cursos-cadastrados">
+                        <h3>Cursos Cadastrados</h3>
+                        <ul id="lista-cursos"></ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+ <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="../js/iniciar.js"></script>
+    <script src="../js/curso.js"></script>
+</body>
+</html>

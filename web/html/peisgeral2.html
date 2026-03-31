@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal Professor - PEIs | NAPNE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/peisgeral2.css"/>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sistema NAPNE - PEIs</h1>
+      <div class="user-info">
+        <i class="fas fa-user-tie"></i>
+        <span>Professor: João Silva</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <aside class="sidebar">
+      <div class="welcome-section">
+        <h2>Bem-vindo!</h2>
+      </div>
+      <ul class="main-menu">
+        <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="#" class="active"><i class="fas fa-clipboard-list"></i> PEIs Geral</a></li>
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section class="peis-section">
+        <h2>Lista de PEIs Geral</h2>
+        <ul id="peisList"></ul>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <script src="../js/iniciar.js"></script>
+  <script src="../js/gerarpdf.js"></script>
+  <script src="../js/peisgeral2.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualizar PEIs - NAPNE</title>
+  <link rel="stylesheet" href="../css/vispeisadap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1>Sistema NAPNE - Visualizar PEIs Adaptativos</h1>
+      <div class="user-info">
+        <i class="fas fa-user-circle"></i>
+        <span id="userInfo">Carregando...</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <aside class="sidebar">
+      <div class="welcome-section">
+        <h2>Bem-vindo!</h2>
+      </div>
+      <ul class="main-menu">
+        <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="#" class="active"><i class="fas fa-clipboard-list"></i> PEIs Adaptativos</a></li>
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section class="peis-section">
+        <h2>Visualizar PEIs Adaptativos</h2>
+        <input type="text" id="searchPEI" placeholder="Pesquisar PEI..." class="search-bar">
+
+        <ul id="peisList" class="peis-list"></ul>
+
+        <div id="peiDetalhes" class="hidden">
+          <h3>Detalhes do PEI Adaptativo</h3>
+          <p><strong>Aluno:</strong> <span id="peiNome"></span></p>
+          <p><strong>Componente Curricular:</strong> <span id="peiComponente"></span></p>
+          <p><strong>Docente:</strong> <span id="peiDocente"></span></p>
+          <p><strong>Ementa do Componente:</strong> <span id="peiEmenta"></span></p>
+          <p><strong>Objetivo Geral:</strong> <span id="peiObjetivoGeral"></span></p>
+          <p><strong>Objetivos Específicos:</strong> <span id="peiObjetivosEspecificos"></span></p>
+          <p><strong>Conteúdos:</strong> <span id="peiConteudos"></span></p>
+          <p><strong>Metodologia:</strong> <span id="peiMetodologia"></span></p>
+          <p><strong>Avaliação:</strong> <span id="peiAvaliacao"></span></p>
+          <p><strong>Data de Criação:</strong> <span id="peiCriadoEm"></span></p>
+
+          <div id="comentariosSection">
+            <h4>Comentários</h4>
+            <ul id="comentariosList"></ul>
+            <textarea id="novoComentario" placeholder="Adicione um comentário..." rows="3"></textarea>
+            <div class="button-group">
+            <button id="adicionarComentario" class="btn-secondary">Adicionar Comentário</button>
+            <button id="baixarPDF" class="btn-pdf"><i class="fas fa-download"></i> Baixar PDF</button>
+            <button id="fecharDetalhes" class="btn-secondary">Fechar</button>
+          </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+   <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <script src="../js/iniciar.js"></script>
+  <script src="../js/gerarpdf.js"></script>
+  <script src="../js/vispeisadap.js"></script>
+</body>
+</html>

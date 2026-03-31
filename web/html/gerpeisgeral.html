@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualizar PEIs Geral - NAPNE</title>
+  <link rel="stylesheet" href="../css/gerpeisgeral.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Sistema NAPNE - Visualizar PEIs Geral</h1>
+      <div class="user-info">
+        <i class="fas fa-user-circle"></i>
+        <span id="userInfo">Carregando...</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <aside class="sidebar">
+      <div class="welcome-section">
+        <h2>Bem-vindo!</h2>
+      </div>
+      <ul class="main-menu">
+        <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="#" class="active"><i class="fas fa-clipboard-list"></i> PEIs Geral</a></li>
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+      </ul>
+    </aside>
+
+    <main class="dashboard">
+      <section class="peis-section">
+        <h2>PEIs Geral Cadastrados</h2>
+        <div class="search-bar-container">
+           <input type="text" id="searchPEI" placeholder="Pesquisar PEI por nome do aluno..." class="search-bar">
+           <button id="addPEIBtn" class="btn-primary">Adicionar Novo PEI</button>
+        </div>
+        <ul id="peisList" class="peis-list">
+          </ul>
+        
+        <div id="peiDetalhes" class="pei-detalhes-content hidden">
+          <h3>Detalhes do PEI Geral: <span id="detalhesAlunoNome"></span></h3>
+          <p><strong>Dificuldades:</strong> <span id="peiDificuldades"></span></p>
+          <p><strong>Habilidades:</strong> <span id="peiHabilidades"></span></p>
+          <p><strong>Histórico:</strong> <span id="peiHistorico"></span></p>
+          <p><strong>Histórico no IFRS:</strong> <span id="peiHistoricoNoIFRS"></span></p>
+          <p><strong>Estratégias de Ensino:</strong> <span id="peiEstrategiasDeEnsino"></span></p>
+          <div class="button-group">
+            <button id="editarDetalhes" class="btn-secondary hidden">Editar Detalhes</button>
+            <button id="baixarPDF" class="btn-pdf"><i class="fas fa-download"></i> Baixar PDF</button>
+            <button id="fecharDetalhes" class="btn-secondary">Fechar</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; 2025 Sistema NAPNE - Todos os direitos reservados
+            </div>
+        </div>
+    </div>
+  </footer>
+
+  <div id="addPEIModal" class="modal">
+      <div class="modal-content">
+        <span class="close-add-modal">&times;</span>
+        <h2 id="modalTitle">Cadastrar Novo PEI Geral</h2>
+        <form id="addPEIForm">
+          
+          <label for="alunoNome">Nome do Aluno:</label>
+          <select id="alunoNome" required>
+            <option value="">Carregando alunos...</option>
+          </select>
+
+          <label for="dificuldades">Dificuldades:</label>
+          <textarea id="dificuldades" rows="3" required></textarea>
+
+          <label for="habilidades">Habilidades:</label>
+          <textarea id="habilidades" rows="3" required></textarea>
+          
+          <label for="historico">Histórico:</label>
+          <textarea id="historico" rows="5" required></textarea>
+
+          <label for="historicoNoIFRS">Histórico no IFRS:</label>
+          <textarea id="historicoNoIFRS" rows="5" required></textarea>
+          
+          <label for="estrategiasDeEnsino">Estratégias de Ensino:</label>
+          <textarea id="estrategiasDeEnsino" rows="5" required></textarea>
+
+          <button type="submit" id="saveButton" class="btn-primary">Salvar PEI</button>
+        </form>
+      </div>
+  </div>
+  <script src="../js/iniciar.js"></script>
+  <script src="../js/gerarpdf.js"></script>
+  <script src="../js/gerpeisgeral.js"></script>
+</body>
+</html>

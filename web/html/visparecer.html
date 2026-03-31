@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualizar Pareceres - NAPNE</title>
+  <link rel="stylesheet" href="../css/visparecer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Sistema NAPNE - Visualizar Pareceres</h1>
+      <div class="user-info">
+        <i class="fas fa-user-circle"></i>
+        <span id="userInfo">Carregando...</span>
+      </div>
+    </div>
+  </header>
+
+    <div class="main-content">
+    <aside class="sidebar">
+      <div class="welcome-section">
+        <h2>Bem-vindo!</h2>
+      </div>
+      <ul class="main-menu">
+        <li><a href="#" onclick="goToHome(); return false;"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="#" class="active"><i class="fas fa-clipboard-list"></i> Pareceres</a></li>
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+      </ul>
+    </aside>
+
+  <main class="container">
+    <section class="pareceres-section">
+      <h2>Pareceres</h2>
+      <input type="text" id="searchPEI" placeholder="Pesquisar Parecer..." class="search-bar">
+      <ul id="peisList" class="pareceres-list"></ul>
+      <div id="peiDetalhes" class="hidden">
+        <h3>Detalhes do Parecer</h3>
+        <p><strong>Nome do Aluno:</strong> <span id="peiAlunoNome"></span></p>
+        <p><strong>Período:</strong> <span id="peiPeriodo"></span></p>
+        <p><strong>Descrição:</strong> <span id="peiDescricao"></span></p>
+        <p><strong>Docente:</strong> <span id="peiDocente"></span></p>
+        <p><strong>Componente:</strong> <span id="peiComponente"></span></p>
+        <div class="button-group" style="margin-top: 20px;">
+          <button id="baixarPDF" class="btn-pdf"><i class="fas fa-download"></i> Baixar PDF</button>
+          <button id="fecharDetalhes" class="btn-secondary">Fechar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Sistema NAPNE - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="../js/iniciar.js"></script>
+  <script src="../js/gerarpdf.js"></script>
+  <script src="../js/visparecer.js"></script>
+</body>
+</html>

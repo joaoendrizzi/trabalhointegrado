@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Login</title>
+</head>
+<body>
+  <div class="login-container" role="main" aria-label="Tela de login do sistema RF Projeto NAPNE">
+    <div class="logo-container">
+      <img src="../img/napne.png" alt="Imagem do site RF Projeto NAPNE" class="site-image" />
+    </div>
+    <h1>Login</h1>
+    <form id="loginForm" novalidate>
+      <div>
+        <label for="username">Login</label>
+        <input type="text" id="username" name="username" placeholder="Digite seu CPF ou SIAPE" required aria-required="true" autocomplete="username" />
+      </div>
+      <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" placeholder="Digite sua senha" required aria-required="true" autocomplete="current-password" />
+      </div>
+      <button type="submit" aria-label="Entrar no sistema">Entrar</button>
+      <div class="error-message" id="errorMessage" role="alert" aria-live="assertive"></div>
+    </form>
+  </div>
+  <script src="../js/script.js"></script>
+</body>
+</html>
