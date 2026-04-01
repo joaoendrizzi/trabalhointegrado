@@ -123,11 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
   async function mostrarDetalhesPei(pei) {
     peiAtual = pei;
     
-    // Preencher informações do PEI
     if (peiAlunoNome) peiAlunoNome.textContent = pei.alunoNome || 'Não informado';
     if (peiComponente) peiComponente.textContent = pei.componenteNome || 'Não informado';
     
-    // Extrair docente da descrição
     let docente = 'Não informado';
     if (pei.descricao) {
       try {
@@ -136,20 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
           docente = descricaoJson.docente;
         }
       } catch (e) {
-        // Não é JSON, ignorar
       }
     }
     if (peiDocente) peiDocente.textContent = docente;
     
-    // Curso
     const cursoNome = pei.cursoNome || 'Não informado';
     const cursoTipo = pei.cursoTipo || 'Superior';
     if (peiCurso) peiCurso.textContent = `${cursoNome} (${cursoTipo})`;
     
-    // Carregar pareceres deste PEI
     await loadPareceresDoPei(pei.id);
     
-    // Mostrar seção de detalhes
     peiDetalhes.classList.remove('hidden');
     peiDetalhes.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
@@ -186,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderPareceresDoPei() {
-    // Criar ou atualizar container de pareceres
     let container = document.getElementById('pareceresListContainer');
     if (!container) {
       container = document.createElement('div');
@@ -194,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
       container.style.marginTop = '20px';
       container.style.marginBottom = '20px';
       
-      // Inserir antes do formulário de criar parecer
       const formSection = document.getElementById('criarParecerSection');
       if (formSection) {
         formSection.parentNode.insertBefore(container, formSection);
@@ -245,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Adicionar botão para criar novo parecer se ainda não atingiu o limite
     if (pareceresDoPei.length < 3) {
       let criarBtn = document.getElementById('criarNovoParecerBtn');
       if (!criarBtn) {
@@ -270,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function mostrarFormularioCriarParecer() {
-    // Limpar formulário
     if (peiPeriodo) peiPeriodo.value = '';
     if (peiDescricao) peiDescricao.value = '';
     if (peiDataEnvio) {
@@ -283,14 +273,12 @@ document.addEventListener('DOMContentLoaded', () => {
       peiDataEnvio.value = `${ano}-${mes}-${dia}T${horas}:${minutos}`;
     }
     
-    // Mostrar formulário
     if (editarParecerForm) {
       editarParecerForm.style.display = 'block';
       editarParecerForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
 
-  // Funções globais para os botões
   window.editarParecer = async function(parecerId) {
     try {
       const baseUrl = window.location.origin + '/trabalhointegrado/index.php';
@@ -313,7 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       
-      // Preencher formulário
       if (peiPeriodo) peiPeriodo.value = parecer.periodo || '';
       if (peiDescricao) peiDescricao.value = parecer.descricao || '';
       if (peiDataEnvio && parecer.dataEnvio) {
@@ -326,10 +313,8 @@ document.addEventListener('DOMContentLoaded', () => {
         peiDataEnvio.value = `${ano}-${mes}-${dia}T${horas}:${minutos}`;
       }
       
-      // Armazenar ID do parecer sendo editado
       editarParecerForm.dataset.parecerId = parecerId;
       
-      // Mostrar formulário
       if (editarParecerForm) {
         editarParecerForm.style.display = 'block';
         editarParecerForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -342,7 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.gerarPDFParecerIndividual = async function(parecerId) {
     try {
-      // Buscar dados completos do parecer
       const baseUrl = window.location.origin + '/trabalhointegrado/index.php';
       const response = await fetch(`${baseUrl}?recurso=pareceres&id=${parecerId}`);
       
@@ -363,12 +347,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       
-      // Adicionar informações do PEI se disponível
       if (peiAtual) {
         parecer.alunoNome = parecer.alunoNome || peiAtual.alunoNome;
         parecer.componenteNome = parecer.componenteNome || peiAtual.componenteNome;
         
-        // Extrair docente do PEI se não estiver no parecer
         if (!parecer.docente && peiAtual.descricao) {
           try {
             const descricaoJson = JSON.parse(peiAtual.descricao);
@@ -376,12 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
               parecer.docente = descricaoJson.docente;
             }
           } catch (e) {
-            // Ignorar erro de parse
           }
         }
       }
       
-      // Verificar se a função gerarPDFParecer existe
       if (typeof gerarPDFParecer === 'function') {
         gerarPDFParecer(parecer);
       } else {
@@ -424,7 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Salvar parecer (criar ou editar)
   if (editarParecerForm) {
     editarParecerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -434,7 +413,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       
-      // Verificar limite de 3 pareceres ao criar novo
       const parecerId = editarParecerForm.dataset.parecerId;
       if (!parecerId && pareceresDoPei.length >= 3) {
         alert('Limite de 3 pareceres atingido para este PEI Adaptativo.');
@@ -489,12 +467,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         alert(parecerId ? 'Parecer atualizado com sucesso!' : 'Parecer criado com sucesso!');
         
-        // Limpar formulário
         editarParecerForm.reset();
         delete editarParecerForm.dataset.parecerId;
         if (editarParecerForm) editarParecerForm.style.display = 'none';
         
-        // Recarregar pareceres
         if (peiAtual) {
           await loadPareceresDoPei(peiAtual.id);
         }
@@ -506,7 +482,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // Filtro de busca
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const searchTerm = searchInput.value.toLowerCase();
@@ -519,7 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Fechar detalhes
   if (fecharBtn) {
     fecharBtn.addEventListener('click', () => {
       peiDetalhes.classList.add('hidden');
@@ -538,6 +512,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Carregar PEIs ao iniciar
   loadPeisAdaptativos();
 });

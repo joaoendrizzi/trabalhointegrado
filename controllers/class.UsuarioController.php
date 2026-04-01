@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "_lib/class.Banco.php";
 require_once "models/class.Usuario.php";
@@ -64,7 +64,6 @@ class UsuarioController implements Controller {
                 exit;
             }
 
-            // Validações
             if (empty($data['nome'])) {
                 http_response_code(400);
                 echo json_encode(['error' => 'O nome é obrigatório'], JSON_UNESCAPED_UNICODE);
@@ -89,10 +88,9 @@ class UsuarioController implements Controller {
                 exit;
             }
 
-            // Validação de CPF - apenas 11 dígitos
             $cpf = '';
             if (!empty($data['cpf'])) {
-                $cpf = preg_replace('/\D/', '', $data['cpf']); // Remove tudo que não é dígito
+                $cpf = preg_replace('/\D/', '', $data['cpf']);
                 if (strlen($cpf) !== 11) {
                     http_response_code(400);
                     echo json_encode(['error' => 'CPF deve conter exatamente 11 dígitos'], JSON_UNESCAPED_UNICODE);
@@ -100,7 +98,6 @@ class UsuarioController implements Controller {
                 }
             }
 
-            // Validação de unicidade - CPF
             if (!empty($cpf) && $this->usuarioDAO->verificarCpfExistente($cpf)) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Este CPF já está cadastrado no sistema'], JSON_UNESCAPED_UNICODE);
@@ -118,7 +115,6 @@ class UsuarioController implements Controller {
             try {
                 $novoUsuario = $this->usuarioDAO->inserir($usuario);
             } catch (PDOException $e) {
-                // Tratar erros de constraint UNIQUE do banco de dados
                 if ($e->getCode() == 23000) {
                     $errorMsg = $e->getMessage();
                     if (strpos($errorMsg, 'cpf') !== false) {
@@ -157,10 +153,9 @@ class UsuarioController implements Controller {
                 exit;
             }
 
-            // Validação de CPF na edição - apenas 11 dígitos
             $cpf = '';
             if (!empty($data['cpf'])) {
-                $cpf = preg_replace('/\D/', '', $data['cpf']); // Remove tudo que não é dígito
+                $cpf = preg_replace('/\D/', '', $data['cpf']);
                 if (strlen($cpf) !== 11) {
                     http_response_code(400);
                     echo json_encode(['error' => 'CPF deve conter exatamente 11 dígitos'], JSON_UNESCAPED_UNICODE);
@@ -168,7 +163,6 @@ class UsuarioController implements Controller {
                 }
             }
 
-            // Validação de unicidade - CPF (excluindo o próprio usuário)
             if (!empty($cpf) && $this->usuarioDAO->verificarCpfExistente($cpf, $id)) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Este CPF já está cadastrado para outro usuário'], JSON_UNESCAPED_UNICODE);
@@ -185,7 +179,6 @@ class UsuarioController implements Controller {
             try {
                 $usuarioAtualizado = $this->usuarioDAO->editar($id, $usuario);
             } catch (PDOException $e) {
-                // Tratar erros de constraint UNIQUE do banco de dados
                 if ($e->getCode() == 23000) {
                     $errorMsg = $e->getMessage();
                     if (strpos($errorMsg, 'cpf') !== false) {
@@ -203,7 +196,6 @@ class UsuarioController implements Controller {
             echo json_encode($usuarioAtualizado, JSON_UNESCAPED_UNICODE);
             exit;
         } catch (PDOException $e) {
-            // Tratar erros de constraint UNIQUE do banco de dados
             if ($e->getCode() == 23000) {
                 $errorMsg = $e->getMessage();
                 if (strpos($errorMsg, 'cpf') !== false) {
@@ -234,7 +226,6 @@ class UsuarioController implements Controller {
         }
         header('Content-Type: application/json; charset=utf-8');
         try {
-            // Verificar se o usuário existe antes de tentar apagar
             $usuarioExistente = $this->usuarioDAO->buscarPorId($id);
             if (empty($usuarioExistente)) {
                 http_response_code(404);
@@ -254,7 +245,6 @@ class UsuarioController implements Controller {
     }
 
     public function login() {
-        // Limpar qualquer output anterior
         if (ob_get_level()) {
             ob_clean();
         }
@@ -314,14 +304,12 @@ class UsuarioController implements Controller {
                 exit;
             }
 
-            // Validar que a nova senha tem pelo menos 8 caracteres
             if (strlen($data['nova_senha']) < 8) {
                 http_response_code(400);
                 echo json_encode(['error' => 'A nova senha deve ter pelo menos 8 caracteres'], JSON_UNESCAPED_UNICODE);
                 exit;
             }
 
-            // Converter ID para inteiro se for string
             $id = (int) $id;
             
             error_log("Tentando alterar senha para usuário ID: " . $id);

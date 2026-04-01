@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const user = JSON.parse(localStorage.getItem('usuario'));
   if (!user || user.funcao !== 'Coordenador') {
     window.location.href = 'index.html';

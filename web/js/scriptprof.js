@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function() {
   const userStr = localStorage.getItem('usuario');
   if (!userStr) {
     window.location.href = 'index.html';

@@ -5,8 +5,30 @@ class Banco {
     static function getConexao(){
         if (!self::$pdo) {
             try {
-                $dsn = "mysql:host=localhost;dbname=sistema_napne;charset=utf8mb4";
-                self::$pdo = new PDO($dsn, 'root', '', [
+                $host = 'localhost';
+                $dbname = 'sistema_napne';
+                $user = 'root';
+                $pass = '';
+                $cfgPath = __DIR__ . '/banco.config.php';
+                if (is_file($cfgPath)) {
+                    $cfg = require $cfgPath;
+                    if (is_array($cfg)) {
+                        if (!empty($cfg['host'])) {
+                            $host = $cfg['host'];
+                        }
+                        if (!empty($cfg['dbname'])) {
+                            $dbname = $cfg['dbname'];
+                        }
+                        if (!empty($cfg['user'])) {
+                            $user = $cfg['user'];
+                        }
+                        if (array_key_exists('pass', $cfg)) {
+                            $pass = $cfg['pass'];
+                        }
+                    }
+                }
+                $dsn = "mysql:host={$host};dbname={$dbname};charset=utf8mb4";
+                self::$pdo = new PDO($dsn, $user, $pass, [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 ]);

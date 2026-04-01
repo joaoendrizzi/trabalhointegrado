@@ -1,27 +1,6 @@
 const loginForm = document.getElementById('loginForm');
 const errorMessage = document.getElementById('errorMessage');
 
-function resolveAuthUrl() {
-  const base = typeof window.API_BASE === 'string' ? window.API_BASE.trim() : '';
-  if (base.startsWith('http://') || base.startsWith('https://')) {
-    return base.replace(/\/$/, '') + '/auth.php';
-  }
-  if (base !== '') {
-    return window.location.origin + base.replace(/\/$/, '') + '/auth.php';
-  }
-  return window.location.origin + '/trabalhointegrado/auth.php';
-}
-
-function messageFromUnknown(value) {
-  if (value == null || value === '') return '';
-  if (typeof value === 'string') return value;
-  try {
-    return JSON.stringify(value);
-  } catch {
-    return String(value);
-  }
-}
-
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault();
   errorMessage.style.display = 'none';
@@ -34,7 +13,7 @@ loginForm.addEventListener('submit', function(event) {
     return;
   }
 
-  const apiUrl = resolveAuthUrl();
+  const apiUrl = window.location.origin + '/trabalhointegrado/auth.php';
   
   fetch(apiUrl, {
     method: 'POST',
@@ -58,22 +37,18 @@ loginForm.addEventListener('submit', function(event) {
     } catch (e) {
       console.error('Erro ao fazer parse do JSON:', e);
       console.error('Texto recebido:', text);
-      const staticHint =
-        response.status === 403 || response.status === 404
-          ? ' Hospedagens como o Vercel não executam PHP: coloque o backend em um servidor com PHP e defina window.API_BASE no HTML com a URL completa da pasta do projeto.'
-          : '';
-      throw new Error(`Resposta inválida do servidor (${response.status}).${staticHint}`);
+      throw new Error('Resposta inválida do servidor: ' + text.substring(0, 100));
     }
     
     if (!response.ok) {
-      throw new Error(messageFromUnknown(data.error) || 'Erro ao fazer login');
+      throw new Error(data.error || 'Erro ao fazer login');
     }
     
     return data;
   })
   .then(data => {
     if (data.error) {
-      errorMessage.textContent = messageFromUnknown(data.error);
+      errorMessage.textContent = data.error;
       errorMessage.style.display = 'block';
     } else {
       localStorage.setItem('usuario', JSON.stringify(data));

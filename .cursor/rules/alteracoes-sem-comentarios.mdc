@@ -1,6 +1,0 @@
----
-description: Alterações sem comentários explicativos no código
-alwaysApply: true
----
-
-Quando o usuário pedir alterações em arquivos, aplicar só o necessário. Não adicionar comentários no código (//, /* */, HTML <!-- -->) para explicar o que foi feito ou documentar decisões.

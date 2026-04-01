@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function() {
   let user = null;
   try {
     const userStr = localStorage.getItem('usuario');
@@ -83,11 +83,9 @@ async function carregarAlunos() {
     const text = await response.text();
     let alunos;
     
-    // Tentar fazer parse do JSON diretamente
     try {
       alunos = JSON.parse(text.trim());
     } catch (e) {
-      // Se falhar, tentar encontrar o JSON válido
       const jsonStart = Math.max(text.indexOf('['), text.indexOf('{'));
       if (jsonStart > 0) {
         try {
@@ -154,11 +152,9 @@ async function verDetalhes(alunoId) {
     const text = await response.text();
     let detalhes;
     
-    // Tentar fazer parse do JSON diretamente
     try {
       detalhes = JSON.parse(text.trim());
     } catch (e) {
-      // Se falhar, tentar encontrar o JSON válido
       const jsonStart = Math.max(text.indexOf('['), text.indexOf('{'));
       if (jsonStart > 0) {
         try {

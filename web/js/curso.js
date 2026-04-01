@@ -1,4 +1,4 @@
-﻿function toggleConfigSubmenu() {
+function toggleConfigSubmenu() {
     const submenu = document.getElementById('config-submenu');
     submenu.classList.toggle('open');
 }

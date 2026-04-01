@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "_lib/class.Banco.php";
 require_once "models/class.Aluno.php";
@@ -18,7 +18,6 @@ class AlunoController implements Controller {
         }
         header('Content-Type: application/json; charset=utf-8');
         try {
-            // Se for solicitado alunos com PEI Adaptativo
             if (isset($_GET['com_pei_adaptativo']) && $_GET['com_pei_adaptativo'] === '1') {
                 $alunos = $this->alunoDAO->buscarAlunosComPeiAdaptativo();
                 echo json_encode($alunos, JSON_UNESCAPED_UNICODE);
@@ -72,7 +71,6 @@ class AlunoController implements Controller {
                 exit;
             }
 
-            // Validação de campos obrigatórios
             if (empty($data['nome'])) {
                 http_response_code(400);
                 echo json_encode(['error' => 'O nome é obrigatório'], JSON_UNESCAPED_UNICODE);
@@ -91,10 +89,9 @@ class AlunoController implements Controller {
                 exit;
             }
 
-            // Validação de CPF - apenas 11 dígitos
             $cpf = '';
             if (!empty($data['cpf'])) {
-                $cpf = preg_replace('/\D/', '', $data['cpf']); // Remove tudo que não é dígito
+                $cpf = preg_replace('/\D/', '', $data['cpf']);
                 if (strlen($cpf) !== 11) {
                     http_response_code(400);
                     echo json_encode(['error' => 'CPF deve conter exatamente 11 dígitos'], JSON_UNESCAPED_UNICODE);
@@ -102,14 +99,12 @@ class AlunoController implements Controller {
                 }
             }
 
-            // Validação de unicidade - CPF
             if (!empty($cpf) && $this->alunoDAO->verificarCpfExistente($cpf)) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Este CPF já está cadastrado no sistema'], JSON_UNESCAPED_UNICODE);
                 exit;
             }
 
-            // Validação de unicidade - Matrícula
             if ($this->alunoDAO->verificarMatriculaExistente($data['matricula'])) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Esta matrícula já está cadastrada no sistema'], JSON_UNESCAPED_UNICODE);
@@ -125,7 +120,6 @@ class AlunoController implements Controller {
             $aluno->setEmail($data['email'] ?? '');
             $aluno->setMatricula($data['matricula'] ?? '');
             
-            // Curso é obrigatório - buscar ou criar
             $cursoId = null;
             require_once "dao/class.CursoDAO.php";
             $cursoDAO = new CursoDAO();
@@ -152,8 +146,7 @@ class AlunoController implements Controller {
             try {
                 $novoAluno = $this->alunoDAO->inserir($aluno);
             } catch (PDOException $e) {
-                // Tratar erros de constraint UNIQUE do banco de dados
-                if ($e->getCode() == 23000) { // Código de erro para violação de constraint UNIQUE
+                if ($e->getCode() == 23000) {
                     $errorMsg = $e->getMessage();
                     if (strpos($errorMsg, 'matricula') !== false) {
                         http_response_code(400);
@@ -165,7 +158,7 @@ class AlunoController implements Controller {
                         exit;
                     }
                 }
-                throw $e; // Re-lançar se não for erro de constraint
+                throw $e;
             }
             
             if (!empty($data['necessidades']) && is_array($data['necessidades'])) {
@@ -197,7 +190,6 @@ class AlunoController implements Controller {
             echo json_encode($novoAluno, JSON_UNESCAPED_UNICODE);
             exit;
         } catch (PDOException $e) {
-            // Tratar erros de constraint UNIQUE do banco de dados
             if ($e->getCode() == 23000) {
                 $errorMsg = $e->getMessage();
                 if (strpos($errorMsg, 'matricula') !== false) {
@@ -235,10 +227,9 @@ class AlunoController implements Controller {
                 exit;
             }
 
-            // Validação de CPF na edição - apenas 11 dígitos
             $cpf = '';
             if (!empty($data['cpf'])) {
-                $cpf = preg_replace('/\D/', '', $data['cpf']); // Remove tudo que não é dígito
+                $cpf = preg_replace('/\D/', '', $data['cpf']);
                 if (strlen($cpf) !== 11) {
                     http_response_code(400);
                     echo json_encode(['error' => 'CPF deve conter exatamente 11 dígitos'], JSON_UNESCAPED_UNICODE);
@@ -246,14 +237,12 @@ class AlunoController implements Controller {
                 }
             }
 
-            // Validação de unicidade - CPF (excluindo o próprio aluno)
             if (!empty($cpf) && $this->alunoDAO->verificarCpfExistente($cpf, $id)) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Este CPF já está cadastrado para outro aluno'], JSON_UNESCAPED_UNICODE);
                 exit;
             }
 
-            // Validação de unicidade - Matrícula (excluindo o próprio aluno)
             if (!empty($data['matricula']) && $this->alunoDAO->verificarMatriculaExistente($data['matricula'], $id)) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Esta matrícula já está cadastrada para outro aluno'], JSON_UNESCAPED_UNICODE);
@@ -297,7 +286,6 @@ class AlunoController implements Controller {
             try {
                 $alunoAtualizado = $this->alunoDAO->editar($id, $aluno);
             } catch (PDOException $e) {
-                // Tratar erros de constraint UNIQUE do banco de dados
                 if ($e->getCode() == 23000) {
                     $errorMsg = $e->getMessage();
                     if (strpos($errorMsg, 'matricula') !== false) {
@@ -310,7 +298,7 @@ class AlunoController implements Controller {
                         exit;
                     }
                 }
-                throw $e; // Re-lançar se não for erro de constraint
+                throw $e;
             }
             
             if (isset($data['necessidades']) && is_array($data['necessidades'])) {
@@ -368,7 +356,6 @@ class AlunoController implements Controller {
             echo json_encode($alunoAtualizado, JSON_UNESCAPED_UNICODE);
             exit;
         } catch (PDOException $e) {
-            // Tratar erros de constraint UNIQUE do banco de dados
             if ($e->getCode() == 23000) {
                 $errorMsg = $e->getMessage();
                 if (strpos($errorMsg, 'matricula') !== false) {

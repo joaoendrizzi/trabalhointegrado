@@ -54,7 +54,6 @@ async function loadNecessidades() {
     }
 }
 
-// Função para carregar informações do usuário
 function carregarUsuario() {
     try {
         const userStr = localStorage.getItem('usuario');

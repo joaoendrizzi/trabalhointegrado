@@ -163,12 +163,10 @@
 </div>
 </footer>
 <script>
-    // Carregar dados do usuário
     document.addEventListener('DOMContentLoaded', () => {
         const user = JSON.parse(localStorage.getItem('usuario'));
         if (user) {
             document.getElementById('userName').textContent = `Coord. ${user.nome}`;
-            // Exibir SIAPE apenas se existir
             const userSiapeEl = document.getElementById('userSiape');
             if (userSiapeEl) {
               if (user.siape && user.siape.trim() !== '') {

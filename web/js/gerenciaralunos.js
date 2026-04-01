@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const userStr = localStorage.getItem('usuario');
   if (!userStr) {
     window.location.href = 'index.html';
@@ -48,17 +48,13 @@
   const cancelarBtn = document.getElementById('cancelarBtn');
   const closeModal = document.querySelector('.close');
 
-  // Máscara para campo CPF - formatação 000.000.000-00
   const cpfInput = document.getElementById('cpf');
   if (cpfInput) {
     cpfInput.addEventListener('input', function(e) {
-      // Remove tudo que não é dígito
       let value = e.target.value.replace(/\D/g, '');
-      // Limita a 11 dígitos
       if (value.length > 11) {
         value = value.substring(0, 11);
       }
-      // Aplica formatação: 000.000.000-00
       if (value.length <= 3) {
         e.target.value = value;
       } else if (value.length <= 6) {
@@ -70,12 +66,10 @@
       }
     });
     
-    // Previne colar texto com formatação
     cpfInput.addEventListener('paste', function(e) {
       e.preventDefault();
       const paste = (e.clipboardData || window.clipboardData).getData('text');
       let digitsOnly = paste.replace(/\D/g, '').substring(0, 11);
-      // Aplica formatação após colar
       if (digitsOnly.length <= 3) {
         e.target.value = digitsOnly;
       } else if (digitsOnly.length <= 6) {
@@ -313,7 +307,6 @@
 
     const nome = document.getElementById('nome').value.trim();
     const dataNasc = document.getElementById('dataNasc').value;
-    // Remove formatação do CPF, mantendo apenas dígitos
     const cpf = document.getElementById('cpf').value.replace(/\D/g, '').trim();
     const endereco = document.getElementById('endereco').value.trim();
     const telefone = document.getElementById('telefone').value.trim();
@@ -433,7 +426,6 @@
 
       document.getElementById('nome').value = alunoCompleto.nome || '';
       document.getElementById('dataNasc').value = alunoCompleto.dataNasc ? alunoCompleto.dataNasc.split('T')[0] : '';
-      // Formata CPF ao preencher o campo (000.000.000-00)
       const cpfDigits = (alunoCompleto.cpf || '').replace(/\D/g, '');
       let cpfFormatted = cpfDigits;
       if (cpfDigits.length <= 3) {

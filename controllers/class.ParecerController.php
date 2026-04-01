@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "_lib/class.Banco.php";
 require_once "models/class.Parecer.php";
@@ -104,17 +104,14 @@ class ParecerController implements Controller {
             $parecer->setCursoId($data['curso_id'] ?? null);
             $parecer->setDataEnvio($data['data_envio'] ?? null);
             
-            // Se não tiver período/descrição/curso e tiver peiadaptativo_id, buscar do PEI Adaptativo
             if ($parecer->getPeiAdaptativoId()) {
                 require_once "dao/class.PeiAdaptativoDAO.php";
                 $peiDAO = new PeiAdaptativoDAO();
                 $pei = $peiDAO->buscarPorId($parecer->getPeiAdaptativoId());
                 if ($pei) {
-                    // Herdar período do PEI se não foi fornecido
                     if (empty($parecer->getPeriodo()) && $pei->getPeriodo()) {
                         $parecer->setPeriodo($pei->getPeriodo());
                     }
-                    // Herdar descrição do PEI se não foi fornecida
                     if (empty($parecer->getDescricao())) {
                         $descricaoPei = $pei->getDescricao();
                         if ($descricaoPei && strpos($descricaoPei, '{') === 0) {
@@ -126,7 +123,6 @@ class ParecerController implements Controller {
                             $parecer->setDescricao($descricaoPei ?? '');
                         }
                     }
-                    // Herdar curso_id do PEI se não foi fornecido
                     if (!$parecer->getCursoId() && $pei->getCursoId()) {
                         $parecer->setCursoId($pei->getCursoId());
                     }

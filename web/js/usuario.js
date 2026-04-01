@@ -1,4 +1,4 @@
-﻿function toggleConfigSubmenu() {
+function toggleConfigSubmenu() {
     const submenu = document.getElementById('config-submenu');
     if (submenu) {
         submenu.classList.toggle('open');
@@ -63,13 +63,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cpfInput = document.getElementById('cpf');
     if (cpfInput) {
         cpfInput.addEventListener('input', function(e) {
-            // Remove tudo que não é dígito
             let value = e.target.value.replace(/\D/g, '');
-            // Limita a 11 dígitos
             if (value.length > 11) {
                 value = value.substring(0, 11);
             }
-            // Aplica formatação: 000.000.000-00
             if (value.length <= 3) {
                 e.target.value = value;
             } else if (value.length <= 6) {
@@ -81,12 +78,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
         
-        // Previne colar texto com formatação
         cpfInput.addEventListener('paste', function(e) {
             e.preventDefault();
             const paste = (e.clipboardData || window.clipboardData).getData('text');
             let digitsOnly = paste.replace(/\D/g, '').substring(0, 11);
-            // Aplica formatação após colar
             if (digitsOnly.length <= 3) {
                 e.target.value = digitsOnly;
             } else if (digitsOnly.length <= 6) {
@@ -110,7 +105,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const nome = document.getElementById('nome')?.value.trim();
         const email = document.getElementById('email')?.value.trim();
-        // Remove formatação do CPF, mantendo apenas dígitos
         const cpf = document.getElementById('cpf')?.value.replace(/\D/g, '').trim();
         const siape = document.getElementById('siape')?.value.trim();
         const funcao = document.getElementById('funcao')?.value;

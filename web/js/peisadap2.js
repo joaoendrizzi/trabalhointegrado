@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   let peis = [];
 
   const peisList = document.getElementById('peisList');
@@ -596,13 +596,11 @@
         document.getElementById('metodologia').value = pei.metodologia || '';
         document.getElementById('avaliacao').value = pei.avaliacao || '';
         
-        // Carregar curso se disponível
         const cursoSelect = document.getElementById('curso');
         if (cursoSelect) {
           if (pei.curso_id) {
             cursoSelect.value = pei.curso_id;
           } else if (pei.alunoCursoId) {
-            // Se não tiver curso_id no PEI, usar o curso do aluno
             cursoSelect.value = pei.alunoCursoId;
           }
         }

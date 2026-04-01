@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   let user = null;
   try {
     const userStr = localStorage.getItem('usuario');

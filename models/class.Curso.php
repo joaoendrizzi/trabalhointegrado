@@ -29,7 +29,6 @@ class Curso implements JsonSerializable{
 
     function jsonSerialize(){
         $tipo = $this->getTipo();
-        // Garantir que tipo seja sempre uma string válida
         $tipoString = ($tipo !== null && $tipo !== false && $tipo !== '') ? (string)$tipo : '';
         
         return [

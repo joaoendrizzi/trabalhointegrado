@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   let user = null;
   try {
     const userStr = localStorage.getItem('usuario');
@@ -133,7 +133,6 @@
           descricaoTexto = descricaoRaw;
         }
       } catch (e) {
-        // Se não for JSON, usar o texto direto
         descricaoTexto = descricaoRaw;
       }
     }
@@ -177,7 +176,6 @@
     try {
       const baseUrl = window.location.origin + '/trabalhointegrado/index.php';
       
-      // Primeiro, tentar buscar pareceres reais da tabela pareceres
       let response = await fetch(`${baseUrl}?recurso=pareceres`);
       let text = await response.text();
       

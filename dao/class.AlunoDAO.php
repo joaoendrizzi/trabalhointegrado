@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "_lib/class.Banco.php";
 require_once "models/class.Aluno.php";
@@ -218,7 +218,7 @@ class AlunoDAO {
         if (empty($cpf)) {
             return false;
         }
-        $cpf = preg_replace('/\D/', '', $cpf); // Remove formatação
+        $cpf = preg_replace('/\D/', '', $cpf);
         $sql = "SELECT id FROM alunos WHERE cpf = :cpf";
         $params = [':cpf' => $cpf];
         

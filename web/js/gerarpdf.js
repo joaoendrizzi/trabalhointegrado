@@ -1,4 +1,4 @@
-﻿function gerarPDFPEIGeral(pei) {
+function gerarPDFPEIGeral(pei) {
   const script = document.createElement('script');
   script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
   script.onload = function() {
@@ -307,7 +307,6 @@ function gerarPDFPEIAdaptativo(pei) {
 }
 
 function gerarPDFParecer(parecer) {
-  // Verificar se jsPDF já está carregado
   if (window.jspdf) {
     gerarPDFParecerInterno(parecer);
   } else {
@@ -355,7 +354,6 @@ function gerarPDFParecerInterno(parecer) {
   let docenteExtraido = parecer.docente || null;
   let periodoExibir = parecer.periodo || null;
   
-  // Tentar extrair descrição de JSON se necessário
   if (descricaoTexto && descricaoTexto.trim().startsWith('{')) {
     try {
       const descricaoJson = JSON.parse(descricaoTexto);
@@ -369,7 +367,6 @@ function gerarPDFParecerInterno(parecer) {
         }
       }
     } catch (e) {
-      // Manter descrição original se não for JSON válido
     }
   }
   
@@ -407,14 +404,12 @@ function gerarPDFParecerInterno(parecer) {
     doc.text(descricao, margin, yPosition);
     yPosition += descricao.length * lineHeight + 5;
     
-    // Verificar se precisa de nova página
     if (yPosition > 270) {
       doc.addPage();
       yPosition = margin;
     }
   }
   
-  // Adicionar rodapé em todas as páginas
   const totalPages = doc.internal.getNumberOfPages();
   for (let i = 1; i <= totalPages; i++) {
     doc.setPage(i);
@@ -423,7 +418,6 @@ function gerarPDFParecerInterno(parecer) {
     doc.text(`Sistema NAPNE - Página ${i} de ${totalPages}`, pageWidth / 2, 285, { align: 'center' });
   }
   
-  // Gerar nome do arquivo
   const alunoNome = (parecer.alunoNome || 'Aluno').replace(/[^a-zA-Z0-9]/g, '_');
   const periodoNome = (periodoExibir || 'parecer').replace(/[^a-zA-Z0-9]/g, '_');
   const fileName = `Parecer_${alunoNome}_${periodoNome}_${new Date().getTime()}.pdf`;

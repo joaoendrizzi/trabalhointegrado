@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "_lib/class.Banco.php";
 require_once "models/class.PeiAdaptativo.php";
@@ -145,7 +145,7 @@ class PeiAdaptativoDAO{
         $stmt->bindValue(':componente_id', $peiadaptativo->getComponenteId(), $peiadaptativo->getComponenteId() ? PDO::PARAM_INT : PDO::PARAM_NULL);
         $stmt->bindValue(':curso_id', $peiadaptativo->getCursoId(), $peiadaptativo->getCursoId() ? PDO::PARAM_INT : PDO::PARAM_NULL);
         $stmt->bindValue(':descricao', $peiadaptativo->getDescricao(), PDO::PARAM_STR);
-        $stmt->bindValue(':periodo', null, PDO::PARAM_NULL); // Período não é mais usado no PEI Adaptativo
+        $stmt->bindValue(':periodo', null, PDO::PARAM_NULL);
         
         try {
             $resultado = $stmt->execute();
@@ -202,7 +202,7 @@ class PeiAdaptativoDAO{
         $query->bindValue(':componente_id', $peiadaptativo->getComponenteId(), $peiadaptativo->getComponenteId() ? PDO::PARAM_INT : PDO::PARAM_NULL);
         $query->bindValue(':curso_id', $peiadaptativo->getCursoId(), $peiadaptativo->getCursoId() ? PDO::PARAM_INT : PDO::PARAM_NULL);
         $query->bindValue(':descricao', $peiadaptativo->getDescricao(), PDO::PARAM_STR);
-        $query->bindValue(':periodo', null, PDO::PARAM_NULL); // Período não é mais usado no PEI Adaptativo
+        $query->bindValue(':periodo', null, PDO::PARAM_NULL);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
 
         if (!$query->execute()) {

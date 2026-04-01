@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "_lib/class.Banco.php";
 require_once "models/class.Usuario.php";
@@ -227,10 +227,8 @@ class UsuarioDAO {
             throw new Exception("Senha não encontrada no banco de dados.");
         }
 
-        // Verificar se a senha atual está correta
         $senhaConfere = password_verify($senhaAtual, $hashBanco);
         
-        // Se não confere com password_verify, verificar se é senha em texto plano
         if (!$senhaConfere && $hashBanco !== '' && hash_equals($hashBanco, $senhaAtual)) {
             $senhaConfere = true;
         }

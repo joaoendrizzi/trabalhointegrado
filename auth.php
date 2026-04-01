@@ -1,5 +1,5 @@
 <?php
-// Iniciar output buffering para evitar qualquer output antes dos headers
+
 if (!ob_get_level()) {
     ob_start();
 }
@@ -24,7 +24,6 @@ require_once "_lib/class.Banco.php";
 require_once "models/class.Usuario.php";
 require_once "dao/class.UsuarioDAO.php";
 
-// Limpar qualquer output anterior
 if (ob_get_level()) {
     ob_clean();
 }
@@ -51,7 +50,6 @@ try {
         exit;
     }
 
-    // Converter objeto Usuario para array para JSON
     $usuarioArray = [
         'id' => $usuario->getId(),
         'siape' => $usuario->getSiape(),
